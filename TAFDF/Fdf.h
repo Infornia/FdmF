@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fdf.h                                              :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2014/12/11 21:17:47 by mwilk            ###   ########.fr       */
+/*   Updated: 2014/12/17 19:29:43 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,19 @@ typedef	struct	s_data
 	void	*win;
 	int		x_win;
 	int		y_win;
+	int		color;
 }			t_data;
 
-int		color_set(int key_code, t_struc *e);
+int		color_set(int key_code, t_data *e);
 #endif
 
 /*
 **Prototypes
 */
-int		ft_fdf_init(t_data *d, char *file);
+void	ft_fdf_init(t_data *d, char *file);
 int		ft_fdf_expose_hook(t_data *d);
 int		ft_fdf_key_hook(int keycode, t_data *d);
-void	ft_fdf_exit(t_data *d)
+void	ft_fdf_exit(t_data *d);
+void	draw(t_data *d, int x_win, int y_win);
+
+void	get_grid(t_data *d);

@@ -15,9 +15,10 @@ NAME = fdf
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC = 
-
+INC_PATH = includes/
+OBJ_PATH = obj/
 OBJ = $(SRC:.c=.o)
+SRC = ft_fdf.c main.c ft_fdf_color_set.c ft_fdf_draw.c ft_fdf_data.c \
 
 all: makelib normal
 
@@ -33,19 +34,22 @@ fcleanlib:
 normal: $(NAME)
 
 $(NAME):
-	@$(CC) $(CFLAGS) -c $(SRC)
+	@$(CC) $(CFLAGS) -c $(SRC) -I $(INC_PATH)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "\033[32mBuilt library.\033[0m"
+	@mkdir $(OBJ_PATH)
+	@mv $(OBJ) $(OBJ_PATH)
+	@echo "\033[35m <(O.O<) WOW ! Very Fdf ! Amaze ! (>^o^)> \033[0m"
 
-clean: cleanlib
-	@/bin/rm -f $(OBJ)
-	@echo "\033[32mCleaned up object files.\033[0m"
+clean:
+	@/bin/rm -rf $(OBJ_PATH)
+	@echo "\033[36mT.T Miss you object files T.T \033[0m"
 
-fclean: clean fcleanlib
+fclean: clean
 	@/bin/rm $(NAME)
-	@echo "\033[32mCleaned up compiled files.\033[0m"
+	@echo "\033[36m X.x Bye Bye compiled files >_< \033[0m"
 
-re: fclean fcleanlib  all
+re: fclean all
 
 .PHONY: all clean fclean re
+

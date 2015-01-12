@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2014/12/11 21:17:31 by mwilk            ###   ########.fr       */
+/*   Updated: 2014/12/17 18:14:05 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,12 @@ void	draw(t_struc e, int x_win, int y_win)
 	static int	x;
 	static int	y;
 	static int	d;
+	static int	b;
 
 	d = 0;
+	b = 0;
 	x = 0;
 	while (x < x_win)
-	{
-		y = 0;
-		while (y < y_win)
-		{
-			mlx_pixel_put(e.mlx, e.win, x, y, 10000000 + d);
-			y++;
-		}
-		x++;
-		d++;
-	}
-	/*while (x < x_win && d < 0x0000FF)
 	{
 		y = 0;
 		while (y < y_win)
@@ -40,10 +31,18 @@ void	draw(t_struc e, int x_win, int y_win)
 			y++;
 		}
 		x++;
-		d += 0x000001;
+		b++;
+		d += 1;
+		if (b == 140)
+		{
+			b = 0;
+			d = d << 1;
+			if (d > 0xFFFFFF)
+				d = 0x969600;
+		}
 	}
-	d += 0x000001;
-	while (x < x_win && d < 0x00FF00)
+	d += 0x001001;
+	/*while (x < x_win && d < 0x00FF00)
 	{
 		y = 0;
 		while (y < y_win)
@@ -134,7 +133,7 @@ int		key_hook(int keycode, t_struc *e)
 {
 	printf("Key %d\n", keycode);
 	if (keycode >= 97 && keycode <= 122)
-		color_set(keycode, e);
+		return (0);
 	if (keycode == 65307)
 		exit(0);
 	printf("%d", WHITE);
@@ -150,8 +149,9 @@ int		main(int ac, char **av)
 	e.x_win = 2500;
 	e.mlx = mlx_init();
 	e.win = mlx_new_window (e.mlx, e.x_win, e.x_win/2, "Degrade");
-	mlx_key_hook(e.win, key_hook, &e);
+	e.img = mlx_new_image (e.mlx, e.x_win, e.x_win/2);
 	mlx_expose_hook(e.win, expose_hook, &e);
+    mlx_key_hook(e.win, key_hook, &e);
 	mlx_loop(e.mlx);
 	return (0);
 }

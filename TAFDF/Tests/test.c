@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/09 16:28:21 by mwilk             #+#    #+#             */
-/*   Updated: 2014/12/10 16:58:43 by mwilk            ###   ########.fr       */
+/*   Updated: 2014/12/17 16:15:48 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int		main(int ac, char **av)
     
 	mlx = mlx_init();
 	win = mlx_new_window (mlx, 500, 500, "Gozu");
-	sleep(20);
+	sleep(2);
 	return (0);
 }
