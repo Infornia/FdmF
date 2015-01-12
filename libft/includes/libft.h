@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 14:27:02 by mwilk             #+#    #+#             */
-/*   Updated: 2014/12/01 20:43:49 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/06 15:42:03 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/uio.h>
 
 # define MIN(x, y)	(x < y) ? x : y
 # define MAX(x, y)	(x > y) ? x : y
+# define BUFF_SIZE 16
 
 /*
 ** LISTS
@@ -46,6 +49,7 @@ t_list				*ft_lstnew(void const *content, size_t content_size);
 int					ft_atoi(const char *str);
 char				*ft_itoa(int c);
 void				ft_bzero(void *str, size_t n);
+void				*ft_realloc(void *ptr, size_t old, size_t size);
 
 /*
 ** FT_IS
@@ -122,4 +126,9 @@ char				*ft_strtrim(const char *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 
+/*
+** GNL
+*/
+
+int					get_next_line(const int fd, char **line);
 #endif
