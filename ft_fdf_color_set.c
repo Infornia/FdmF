@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fdf.h"
+#include "fdf.h"
 
 int		color_set(int keycode, t_data *e)
 {
@@ -26,6 +26,6 @@ int		color_set(int keycode, t_data *e)
 		e->color = BLACK;
 	if (keycode == 112)
 		e->color = PINK;
-	printf("%lu",e->color);
+	//printf("%lu",e->color);
 	return (0);
 }

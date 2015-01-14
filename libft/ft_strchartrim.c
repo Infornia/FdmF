@@ -14,15 +14,15 @@
 
 char	*ft_strchartrim(const char *s, char c)
 {
-	char		*ret;
-	int		i;
-	int		j;
-	int		t_start;
+	char			*ret;
+	unsigned int	i;
+	int				j;
+	int				t_start;
 
 	t_start = 0;
 	i = 0;
 	j = 0;
-	ret = ft_strnew(ft_strlen s + 1)
+	ret = ft_strnew(ft_strlen(s) + 1);
 	while (i < ft_strlen(s))
 	{
 		if (!t_start && s[i] == c)

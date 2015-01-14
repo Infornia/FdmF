@@ -20,7 +20,7 @@ void	ft_fdf_init(t_data *d, char *file)
 	d->file_name = file;
 	d->x_win = X_WIN;
 	d->y_win = Y_WIN;
-	//d->mlx = mlx_init();
+	d->mlx = mlx_init();
 	if (d->mlx)
 	{
 		d->win = mlx_new_window (d->mlx, d->x_win, d->x_win/2, "FDF");

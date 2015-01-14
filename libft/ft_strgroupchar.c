@@ -20,7 +20,7 @@ char	*ft_strgroupchar(const char *s, char c)
 
 	if (!s)
 		return (NULL);
-	ret = ft_strnew(ft_strlen s + 1);
+	ret = ft_strnew(ft_strlen(s) + 1);
 	i = 0;
 	j = 0;
 	while (s[i])
