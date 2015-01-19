@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/15 19:32:47 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/19 17:57:49 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ void	ft_fdf_init(t_data *d, char *file)
 	d->win = mlx_new_window (d->mlx, d->x_win, d->y_win, "FdF");
 	d->img = mlx_new_image(d->mlx, d->x_win, d->y_win);
 	d->data = mlx_get_data_addr(d->img, &(d->color), &(d->size), &(d->endian));
-	mlx_key_hook(d->win, key_hook, d);
-	mlx_mouse_hook(d->win, mouse_hook, d);
-	mlx_expose_hook(d->win, expose_hook, d);
-	mlx_loop(d->mlx);
+	if (d->win)
+	{
+		mlx_key_hook(d->win, key_hook, d);
+		mlx_mouse_hook(d->win, mouse_hook, d);
+		mlx_expose_hook(d->win, expose_hook, d);
+		mlx_loop(d->mlx);
+	}
+	//print_data(d);
 	get_grid(d);
 }
 
@@ -38,6 +42,7 @@ void		ft_fdf_exit(t_data *d)
 
 int		expose_hook(t_data *d)
 {
+	printf("%s\n", d->data);
 	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
 	draw(d, d->x_win, d->x_win/2);
 	return(0);

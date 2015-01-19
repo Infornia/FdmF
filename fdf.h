@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/15 20:02:30 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/19 18:11:26 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 **Parameters
 */
 
-# define X_WIN 2200
+# define X_WIN 2222
 # define Y_WIN X_WIN/2
 
 /*
@@ -79,3 +79,4 @@ void	ft_fdf_exit(t_data *d);
 void	draw(t_data *d, int x_win, int y_win);
 
 void	load_data(t_data *d);
+void	print_data(t_data *d);

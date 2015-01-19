@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/15 23:13:51 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/19 18:13:46 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw(t_data *e, int x_win, int y_win)
 	double		d;
 	static int	b;
     
-	d = -2000;
+	d = -x_win * 1.85;
 	b = 0;
 	x = 0;
 	while (x < x_win)
@@ -27,9 +27,12 @@ void	draw(t_data *e, int x_win, int y_win)
 		y = 0;
 		while (y < y_win)
 		{
-			mlx_pixel_put(e->mlx, e->win, x, y, color(d));
+			e->color = color(d);
+			mlx_pixel_put(e->mlx, e->win, x, y, e->color);
+			//ft_memcpy(&e->data[(x * 4)], (void *)e->color, (size_t)(sizeof(int)));
 			y++;
-			d += 0.0000025;
+			//d += 0.0000025;
+			d += 1/(x_win * y_win * 0.166);
 		}
 	x++;
 	b++;
