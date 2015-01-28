@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/19 18:11:26 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/28 19:01:04 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,38 @@
 /*
 **Structures
 */
+
+typedef struct	s_point
+{
+	int		x;
+	int		y;
+	int		z;
+	int		color;
+
+}				t_point;
+
+typedef struct s_mesh
+{
+	int		**data;
+	int		z_max;
+	int		map_h;
+	int		map_w;
+}				t_mesh;
+
 typedef	struct	s_data
 {
 	char	*file_name;
 	void	*mlx;
 	void	*win;
 	void	*img;
-	char		*data;
+	char		*data_img;
 	int			size;
 	int			endian;
 	int		x_win;
 	int		y_win;
 	int		color;
+	t_mesh	*map;
 }			t_data;
-
-typedef struct s_mesh
-{
-	int		**data;
-	int		y;
-	int		x;
-}				t_mesh;
 
 int		color_set(int key_code, t_data *e);
 #endif
@@ -77,6 +89,9 @@ int		mouse_hook(int button, int x, int y, t_data *d);
 int		key_hook(int keycode, t_data *d);
 void	ft_fdf_exit(t_data *d);
 void	draw(t_data *d, int x_win, int y_win);
+void	check_case(t_data *e);
 
 void	load_data(t_data *d);
 void	print_data(t_data *d);
+void	print_map(t_data *d);
+void	get_map(t_data *d);
