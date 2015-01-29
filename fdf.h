@@ -26,7 +26,7 @@
 **Parameters
 */
 
-# define X_WIN 2222
+# define X_WIN 1222
 # define Y_WIN X_WIN/2
 
 /*

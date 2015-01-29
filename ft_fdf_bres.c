@@ -25,15 +25,46 @@ void	draw_case1(t_data *e, t_point p1, t_point p2)
 	}
 }
 
+void	draw_case2(t_data *e, t_point p1, t_point p2)
+{
+	int		y;
+
+	y = p1.y;
+	while (y <= p2.y)
+	{
+		mlx_pixel_put(e->mlx, e->win, p1.x + ((p2.x - p1.x) *
+					(y - p1.y)) / (p2.y - p1.y), y, BLACK);
+		y++;
+	}
+}
+
 void	check_case(t_data *e)
 {
 	t_point	p1;
 	t_point	p2;
-
+	int		dx;
+	int		dy; //A traiter: Les points, leur voisinnage
 	p1.x = 100;
-	p1.y = 100;
-	p2.x = X_WIN - 100;
-	p2.y = Y_WIN - 100;
-	if (p1.x < p2.x && p1.y < p2.y)
-		draw_case1(e, p1, p2);
+	p1.y = Y_WIN - 100;
+	p2.x = 200;
+	p2.y = 100;
+	if ((dx = p2.x - p1.x) < 0)
+		dx *= -1;
+	if ((dy = p2.y - p1.y) < 0)
+		dy *= -1;
+	if (dx >= dy)
+	{
+		if ((p1.x < p2.x && p1.y < p2.y) || (p1.x < p2.x && p1.y > p2.y))
+			draw_case1(e, p1, p2);
+		if ((p1.x > p2.x && p1.y > p2.y) || (p1.x > p2.x && p1.y < p2.y))
+			draw_case1(e, p2, p1);
+	}
+	if (dy > dx)
+	{
+		if ((p1.x > p2.x && p1.y > p2.y) || (p1.x > p2.x && p1.y < p2.y))
+			draw_case2(e, p1, p2);
+		if ((p1.x < p2.x && p1.y < p2.y) || (p1.x < p2.x && p1.y > p2.y))
+			draw_case2(e, p2, p1);
+	}
+
 }
