@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/28 19:07:05 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/30 23:05:56 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_fdf_init(t_data *d, char *file)
 	d->file_name = file;
 	d->x_win = X_WIN;
 	d->y_win = Y_WIN;
+	d->projection_type = ISO;
+	d->draw_type = IMG;
 	d->mlx = mlx_init();
 	d->win = mlx_new_window (d->mlx, d->x_win, d->y_win, "FdF");
 	d->img = mlx_new_image(d->mlx, d->x_win, d->y_win);
@@ -49,7 +51,7 @@ int		expose_hook(t_data *d)
 
 int		key_hook(int keycode, t_data *d)
 {
-	printf("Key %d\n", keycode);
+	//printf("Key %d\n", keycode);
 	if (keycode >= 97 && keycode <= 122)
 		color_set(keycode, d);
 	if (d)
@@ -62,10 +64,10 @@ int		key_hook(int keycode, t_data *d)
 
 int		mouse_hook(int	button, int x, int y, t_data *d)
 {
-	printf("Mouse Button: %d\n", button);
+	//printf("Mouse Button: %d\n", button);
 	if (button == 1 && x > (d->x_win - 25) && y < 25)
 		ft_fdf_exit(d);
-	printf("Mouse x: %d\n", x);
-	printf("Mouse y: %d\n", y);
+	//printf("Mouse x: %d\n", x);
+	//printf("Mouse y: %d\n", y);
 	return (0);
 }

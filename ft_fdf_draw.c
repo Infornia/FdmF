@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/28 18:33:45 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/30 18:05:05 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@ int		color(double t)
 	127.5 * (1 - cos(t))
 	));
 }
-/*void	draw_line(t_data *d, t_mesh p1, t_mesh p2)
-{
-	
-}
 
 void	print_map(t_data *d)
 {
@@ -69,14 +65,12 @@ void	print_map(t_data *d)
 	{
 		while (i < d->map->map_w)
 		{
-			if (i < d->map->x_max - 1)
-				draw_line(d, d->map->data[j][i], d->map->data[j][i + 1]);
-			if (j < d->map->y_max - 1)
-				draw_line(d, d->map->data[j][i], d->map->data[j + 1][i]);
+			if (i < d->map->map_w - 1)
+				//draw_line(d, d->map->data[j][i], d->map->data[j][i + 1]);
+			if (j < d->map->map_h - 1)
+				//draw_line(d, d->map->data[j][i], d->map->data[j + 1][i]);
 			i++;
 		}
 		j++;
 	}
-}*/
-
-
+}

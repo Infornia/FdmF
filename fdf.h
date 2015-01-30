@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/28 19:01:04 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/30 17:53:15 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@
 
 # define X_WIN 1222
 # define Y_WIN X_WIN/2
+# define PARA	0
+# define ISO	1
+# define EYE	2
+# define PUT	0
+# define IMG	1
 
 /*
 **Colors
@@ -50,6 +55,8 @@ typedef struct	s_point
 	int		x;
 	int		y;
 	int		z;
+	//int		2d_x;
+	//int		2d_y;
 	int		color;
 
 }				t_point;
@@ -57,6 +64,7 @@ typedef struct	s_point
 typedef struct s_mesh
 {
 	int		**data;
+	//t_point	**grid;
 	int		z_max;
 	int		map_h;
 	int		map_w;
@@ -71,9 +79,11 @@ typedef	struct	s_data
 	char		*data_img;
 	int			size;
 	int			endian;
+	int			color;
 	int		x_win;
 	int		y_win;
-	int		color;
+	int			projection_type;
+	int			draw_type;
 	t_mesh	*map;
 }			t_data;
 
@@ -88,8 +98,11 @@ int		expose_hook(t_data *d);
 int		mouse_hook(int button, int x, int y, t_data *d);
 int		key_hook(int keycode, t_data *d);
 void	ft_fdf_exit(t_data *d);
+
 void	draw(t_data *d, int x_win, int y_win);
 void	check_case(t_data *e);
+void	draw_case1(t_data *e, t_point p1, t_point p2);
+void	draw_case2(t_data *e, t_point p1, t_point p2);
 
 void	load_data(t_data *d);
 void	print_data(t_data *d);

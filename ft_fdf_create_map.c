@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:39:19 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/28 17:51:24 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/30 17:28:06 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ void	get_map(t_data *d)
 		i++;
 	}
 	close(fd);
-	printf("%i\n%i\n%i\n", mesh->map_h, mesh->map_w, mesh->z_max);
+	//printf("%i\n%i\n%i\n", mesh->map_h, mesh->map_w, mesh->z_max);
 	d->map = mesh;
 }
