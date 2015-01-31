@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/30 23:05:56 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/31 21:54:05 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void		ft_fdf_exit(t_data *d)
 
 int		expose_hook(t_data *d)
 {
-	draw(d, d->x_win, d->y_win);
-	check_case(d);
+	//draw_rainbow(d, d->x_win, d->y_win);
+	print_map(d);
+	//check_case(d);
 	//mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
 	return(0);
 }

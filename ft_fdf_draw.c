@@ -6,11 +6,32 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/30 18:05:05 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/31 21:53:54 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	print_map(t_data *d)
+{
+	int	i;
+	int	j;
+// A traiter: map_w avec longueur de chaque ligne etudiee
+	j = 0;
+	while (j < d->map->map_h)
+	{
+		i = 0;
+		while (i < d->map->map_w)
+		{
+			if (i < d->map->map_w - 1)
+				draw_line1(d, i, j, d->map->data[j][i], d->map->data[j][i + 1]);
+			if (j < d->map->map_h - 1)
+				draw_line2(d, i, j, d->map->data[j][i], d->map->data[j + 1][i]);
+			i++;
+		}
+		j++;
+	}
+}
 
 void	mlx_put_img(t_data *e, int color, int x, int y)
 {
@@ -24,7 +45,7 @@ void	mlx_put_img(t_data *e, int color, int x, int y)
 	e->data_img[i + 2] = color % 256;
 }
 
-void	draw(t_data *e, int x_win, int y_win)
+void	draw_rainbow(t_data *e, int x_win, int y_win)
 {
 	static int	x;
 	static int	y;
@@ -55,22 +76,4 @@ int		color(double t)
 	127.5 * (sin(t) + 1),
 	127.5 * (1 - cos(t))
 	));
-}
-
-void	print_map(t_data *d)
-{
-	int	i;
-	int	j;
-	while (j < d->map->map_h)
-	{
-		while (i < d->map->map_w)
-		{
-			if (i < d->map->map_w - 1)
-				//draw_line(d, d->map->data[j][i], d->map->data[j][i + 1]);
-			if (j < d->map->map_h - 1)
-				//draw_line(d, d->map->data[j][i], d->map->data[j + 1][i]);
-			i++;
-		}
-		j++;
-	}
 }

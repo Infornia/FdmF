@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/30 17:53:15 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/31 21:54:00 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@
 
 typedef struct	s_point
 {
-	int		x;
-	int		y;
-	int		z;
-	//int		2d_x;
-	//int		2d_y;
+	int		d3_x;
+	int		d3_y;
+	int		d3_z;
+	//int			d2_x;
+	//int			d2_y;
+	double		x;
+	double		y;
 	int		color;
 
 }				t_point;
@@ -99,10 +101,14 @@ int		mouse_hook(int button, int x, int y, t_data *d);
 int		key_hook(int keycode, t_data *d);
 void	ft_fdf_exit(t_data *d);
 
-void	draw(t_data *d, int x_win, int y_win);
-void	check_case(t_data *e);
+void		draw_rainbow(t_data *d, int x_win, int y_win);
+void	check_case(t_data *e, t_point p1, t_point p2);
 void	draw_case1(t_data *e, t_point p1, t_point p2);
 void	draw_case2(t_data *e, t_point p1, t_point p2);
+
+void	calc_proj(t_point *p, int d3_x, int d3_y, int d3_z, int proj);
+void	draw_line1(t_data *d, int x, int y, int z1, int z2);
+void	draw_line2(t_data *d, int x, int y, int z1, int z2);
 
 void	load_data(t_data *d);
 void	print_data(t_data *d);

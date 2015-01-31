@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:39:19 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/30 17:28:06 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/01/31 21:54:02 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	get_map(t_data *d)
 	mesh->map_h = line_count(d->file_name);
 	mesh->z_max = 0;
 	mesh->data = (int **)ft_memalloc(sizeof(int **) * mesh->map_h + 1); //alloc data[i]
+	mesh->data[mesh->map_h + 1] = NULL;
 	if (!(fd = open(d->file_name, O_RDONLY)))
 		exit(0);
 	while (get_next_line(fd, &line) > 0)
