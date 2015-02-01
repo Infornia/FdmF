@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/31 21:53:54 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/01 20:35:33 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,17 @@ void	print_map(t_data *d)
 		while (i < d->map->map_w)
 		{
 			if (i < d->map->map_w - 1)
-				draw_line1(d, i, j, d->map->data[j][i], d->map->data[j][i + 1]);
+				draw_line(d, d->map->data[j][i], d->map->data[j][i + 1]);
 			if (j < d->map->map_h - 1)
-				draw_line2(d, i, j, d->map->data[j][i], d->map->data[j + 1][i]);
+				draw_line(d, d->map->data[j][i], d->map->data[j + 1][i]);
 			i++;
 		}
 		j++;
 	}
+	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
 }
 
-void	mlx_put_img(t_data *e, int color, int x, int y)
+void	color_pixel(t_data *e, int color, int x, int y)
 {
 	int	i;
 	
@@ -58,18 +59,18 @@ void	draw_rainbow(t_data *e, int x_win, int y_win)
 		y = 0;
 		while (y < y_win)
 		{
-			e->color = color(d);
+			e->color = get_color(d);
 			//mlx_pixel_put(e->mlx, e->win, x, y, e->color);
-			mlx_put_img(e, e->color, x, y);
+			color_pixel(e, e->color, x, y);
 			y++;
 			d += 1/(x_win * y_win * 0.166);
 		}
 	x++;
 	}
-	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
+	//mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 }
 
-int		color(double t)
+int		get_color(double t)
 {
 	return(RGB(
 	127.5 * (cos(t) + 1),

@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/31 21:54:05 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/01 20:35:17 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	ft_fdf_init(t_data *d, char *file)
 	d->y_win = Y_WIN;
 	d->projection_type = ISO;
 	d->draw_type = IMG;
+	d->size_map = 25;
+	d->size_peaks = 15;
 	d->mlx = mlx_init();
 	d->win = mlx_new_window (d->mlx, d->x_win, d->y_win, "FdF");
 	d->img = mlx_new_image(d->mlx, d->x_win, d->y_win);
@@ -43,16 +45,14 @@ void		ft_fdf_exit(t_data *d)
 
 int		expose_hook(t_data *d)
 {
-	//draw_rainbow(d, d->x_win, d->y_win);
+	draw_rainbow(d, d->x_win, d->y_win);
 	print_map(d);
-	//check_case(d);
-	//mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
 	return(0);
 }
 
 int		key_hook(int keycode, t_data *d)
 {
-	//printf("Key %d\n", keycode);
+	printf("Key %d\n", keycode);
 	if (keycode >= 97 && keycode <= 122)
 		color_set(keycode, d);
 	if (d)

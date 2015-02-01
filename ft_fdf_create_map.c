@@ -6,13 +6,38 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:39:19 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/31 21:54:02 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/01 20:38:03 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		line_count(char *file_name)
+void		get_map(t_data *d)
+{
+	t_map	*map;
+	int		fd;
+	int		y;
+	char	**grid;
+	char	*line;
+
+	y = 0;
+	map = (t_map *)ft_memalloc(sizeof(t_map));
+	map->map_h = line_count(d->file_name);
+	map->z_max = 0;
+	map->data = (t_point **)ft_memalloc(sizeof(t_point *) * map->map_h + 1); //alloc data[i]
+	map->data[map->map_h + 1] = NULL;
+	if (!(fd = open(d->file_name, O_RDONLY)))
+		exit(0);
+	while (get_next_line(fd, &line) > 0)
+	{
+		map = split_int_this(map, line, y, d->projection_type);
+		y++;
+	}
+	close(fd);
+	d->map = map;
+}
+
+int			line_count(char *file_name)
 {
 	int		i;
 	int		fd;
@@ -29,10 +54,21 @@ int		line_count(char *file_name)
 	return (i);
 }
 
-t_mesh		*split_int_this(t_mesh *mesh, char *line, int i)
+t_point		create_point(int x, int y, int z, int proj)
+{
+	t_point	p;
+
+	p.d3_x = x * 25;
+	p.d3_y = y * 25;
+	p.d3_z = z * 15;
+	calc_proj(&p, projection_type);
+	return (p);
+}
+
+t_map		*split_int_this(t_map *map, char *line, int y, int proj)
 {
 	char	**split;
-	int		*atoi;
+	t_point	*atoi;
 	int		tmp;
 	int		x;
 	int 	cur_x;
@@ -41,44 +77,17 @@ t_mesh		*split_int_this(t_mesh *mesh, char *line, int i)
 	split = ft_strsplit(line, ' ');
 	while ((split[x]) != NULL)
 		x++;
-	if (x > mesh->map_w)
-		mesh->map_w = x;
+	map->map_w = x > map->map_w ? x : map->map_w;
 	cur_x = x;
-	atoi = ft_memalloc(sizeof(int *) * x + 1); //alloc data[i][x]
+	atoi = (t_point *)malloc(sizeof(t_point) * (x + 1)); //alloc data[i][x]
 	x = 0;
 	while (x < cur_x)
 	{
-		if ((tmp = ft_atoi((const char *)split[x])) > mesh->z_max)
-			mesh->z_max = tmp;
-		atoi[x] = tmp;
+		if ((tmp = ft_atoi((const char *)split[x])) > map->z_max)
+			map->z_max = tmp;
+		atoi[x] = create_point(x ,y, tmp, proj);
 		x++;
 	}
-	mesh->data[i] = atoi;
-	return (mesh);
-}
-
-void	get_map(t_data *d)
-{
-	t_mesh	*mesh;
-	int		fd;
-	int		i;
-	char	**grid;
-	char	*line;
-
-	i = 0;
-	mesh = ft_memalloc(sizeof(t_mesh));
-	mesh->map_h = line_count(d->file_name);
-	mesh->z_max = 0;
-	mesh->data = (int **)ft_memalloc(sizeof(int **) * mesh->map_h + 1); //alloc data[i]
-	mesh->data[mesh->map_h + 1] = NULL;
-	if (!(fd = open(d->file_name, O_RDONLY)))
-		exit(0);
-	while (get_next_line(fd, &line) > 0)
-	{
-		mesh = split_int_this(mesh, line, i);
-		i++;
-	}
-	close(fd);
-	//printf("%i\n%i\n%i\n", mesh->map_h, mesh->map_w, mesh->z_max);
-	d->map = mesh;
+	map->data[y] = atoi;
+	return (map);
 }

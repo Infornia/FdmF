@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 18:23:49 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/31 21:53:50 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/01 20:37:18 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,23 @@ void	draw_case1(t_data *e, t_point p1, t_point p2)
 	int		x;
 
 	x = p1.x;
-	while (x <= p2.x)
+	if (e->draw_type == PUT)
 	{
-		mlx_pixel_put(e->mlx, e->win, x, p1.y + ((p2.y - p1.y) *
-					(x - p1.x)) / (p2.x - p1.x), WHITE);
-		x++;
+		while (x <= p2.x)
+		{
+			mlx_pixel_put(e->mlx, e->win, x, p1.y + ((p2.y - p1.y) *
+						(x - p1.x)) / (p2.x - p1.x), BLACK);
+			x++;
+		}
+	}
+	else if (e->draw_type == IMG)
+	{
+		while (x <= p2.x)
+		{
+			color_pixel(e, BLACK, x, p1.y + ((p2.y - p1.y) *
+						(x - p1.x)) / (p2.x - p1.x));
+			x++;
+		}
 	}
 }
 
@@ -30,15 +42,27 @@ void	draw_case2(t_data *e, t_point p1, t_point p2)
 	int		y;
 
 	y = p1.y;
-	while (y <= p2.y)
+	if (e->draw_type == PUT)
 	{
-		mlx_pixel_put(e->mlx, e->win, p1.x + ((p2.x - p1.x) *
-					(y - p1.y)) / (p2.y - p1.y), y, WHITE);
-		y++;
+		while (y <= p2.y)
+		{
+			mlx_pixel_put(e->mlx, e->win, p1.x + ((p2.x - p1.x) *
+						(y - p1.y)) / (p2.y - p1.y), y, BLACK);
+			y++;
+		}
+	}
+	else if (e->draw_type == IMG)
+	{
+		while (y <= p2.y)
+		{
+			color_pixel(e, BLACK, p1.x + ((p2.x - p1.x) *
+						(y - p1.y)) / (p2.y - p1.y), y);
+			y++;
+		}
 	}
 }
 
-void	check_case(t_data *e, t_point p1, t_point p2)
+void	draw_line(t_data *e, t_point p1, t_point p2)
 {
 	int		dx;
 	int		dy;

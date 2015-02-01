@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/31 21:54:00 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/01 20:34:07 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 **Parameters
 */
 
-# define X_WIN 1222
+# define X_WIN 2222
 # define Y_WIN X_WIN/2
 # define PARA	0
 # define ISO	1
@@ -52,25 +52,23 @@
 
 typedef struct	s_point
 {
-	int		d3_x;
-	int		d3_y;
-	int		d3_z;
-	//int			d2_x;
-	//int			d2_y;
-	double		x;
-	double		y;
+	int			d3_x;
+	int			d3_y;
+	int			d3_z;
+	int		x;
+	int		y;
 	int		color;
 
 }				t_point;
 
-typedef struct s_mesh
+typedef struct s_map
 {
-	int		**data;
-	//t_point	**grid;
+	//int		**data;
+	t_point	**data;
 	int		z_max;
 	int		map_h;
 	int		map_w;
-}				t_mesh;
+}				t_map;
 
 typedef	struct	s_data
 {
@@ -86,7 +84,11 @@ typedef	struct	s_data
 	int		y_win;
 	int			projection_type;
 	int			draw_type;
-	t_mesh	*map;
+	int		move_lr;
+	int		move_ud;
+	int		size_map;
+	int		size_peaks;
+	t_map	*map;
 }			t_data;
 
 int		color_set(int key_code, t_data *e);
@@ -95,22 +97,46 @@ int		color_set(int key_code, t_data *e);
 /*
 **Prototypes
 */
+
+/*
+*******************INIT
+*/
 void	ft_fdf_init(t_data *d, char *file);
 int		expose_hook(t_data *d);
 int		mouse_hook(int button, int x, int y, t_data *d);
 int		key_hook(int keycode, t_data *d);
 void	ft_fdf_exit(t_data *d);
 
-void		draw_rainbow(t_data *d, int x_win, int y_win);
-void	check_case(t_data *e, t_point p1, t_point p2);
-void	draw_case1(t_data *e, t_point p1, t_point p2);
-void	draw_case2(t_data *e, t_point p1, t_point p2);
+/*
+*******************PARSING
+*/
 
-void	calc_proj(t_point *p, int d3_x, int d3_y, int d3_z, int proj);
-void	draw_line1(t_data *d, int x, int y, int z1, int z2);
-void	draw_line2(t_data *d, int x, int y, int z1, int z2);
+void	get_map(t_data *d);
+int			line_count(char *file_name);
+t_map		*split_int_this(t_map *map, char *line, int y, int proj);
+t_point 		create_point(int x, int y, int z, int proj);
+
+/*
+*******************DRAW
+*/
+
+void	print_map(t_data *d);
+void		draw_line(t_data *d, t_point p1, t_point p2);
+void			check_case(t_data *e, t_point p1, t_point p2);
+void				draw_case1(t_data *e, t_point p1, t_point p2);
+void				draw_case2(t_data *e, t_point p1, t_point p2);
+void	draw_rainbow(t_data *d, int x_win, int y_win);
+void		color_pixel(t_data *e, int color, int x, int y);
+
+/*
+*******************CALCULATE
+*/
+
+void	calc_proj(t_point *p, int proj);
+
+/*
+*******************INUTILISE
+*/
 
 void	load_data(t_data *d);
 void	print_data(t_data *d);
-void	print_map(t_data *d);
-void	get_map(t_data *d);
