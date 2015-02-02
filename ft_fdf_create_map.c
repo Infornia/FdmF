@@ -61,7 +61,7 @@ t_point		create_point(int x, int y, int z, int proj)
 	p.d3_x = x * 25;
 	p.d3_y = y * 25;
 	p.d3_z = z * 15;
-	calc_proj(&p, projection_type);
+	calc_proj(&p, proj);
 	return (p);
 }
 
