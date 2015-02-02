@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 18:23:49 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/01 20:37:18 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/02 17:41:55 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,29 @@ void	draw_case2(t_data *e, t_point p1, t_point p2)
 	}
 }
 
-void	draw_line(t_data *e, t_point p1, t_point p2)
+void	draw_line(t_data *d, t_point p1, t_point p2)
 {
 	int		dx;
 	int		dy;
 
-	//p1.x = 1200;
-	//p2.y = 100;
-	//p2.x = 100;
-	//p1.y = 600;
+	//calc_control(&p1);
+	//calc_control(&p2);
+	calc_proj(&p1, d->projection_type);
+	calc_proj(&p2, d->projection_type);
 	dx *= (dx = p2.x - p1.x) < 0 ? -1 : 1;
 	dy *= (dy = p2.y - p1.y) < 0 ? -1 : 1;
 	if (dx >= dy)
 	{
 		if (p1.x <= p2.x)
-			draw_case1(e, p1, p2);
+			draw_case1(d, p1, p2);
 		else if (p1.x >= p2.x)
-			draw_case1(e, p2, p1);
+			draw_case1(d, p2, p1);
 	}
 	else if (dy >= dx)
 	{
 		if (p1.y >= p2.y)
-			draw_case2(e, p2, p1);
+			draw_case2(d, p2, p1);
 		else if (p1.y <= p2.y)
-			draw_case2(e, p1, p2);
+			draw_case2(d, p1, p2);
 	}
 }

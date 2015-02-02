@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/01 20:35:33 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/02 17:35:18 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,6 @@ void	print_map(t_data *d)
 		j++;
 	}
 	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
-}
-
-void	color_pixel(t_data *e, int color, int x, int y)
-{
-	int	i;
-	
-	i = x * 4 + y * e->size;
-	e->data_img[i] = color % 256;
-	color /= 256;
-	e->data_img[i + 1] = color % 256;
-	color /= 256;
-	e->data_img[i + 2] = color % 256;
 }
 
 void	draw_rainbow(t_data *e, int x_win, int y_win)
