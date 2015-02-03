@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fdf_color_set.c                                 :+:      :+:    :+:   */
+/*   ft_fdf_control.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/11 15:48:12 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/02 15:56:36 by mwilk            ###   ########.fr       */
+/*   Created: 2015/02/01 16:25:27 by mwilk             #+#    #+#             */
+/*   Updated: 2015/02/02 17:16:59 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	color_pixel(t_data *e, int color, int x, int y)
+// nom ft_fdf_check_points.c
+int		check_x(t_data *d)
 {
-	int	i;
-	
-	i = x * 4 + y * e->size;
-	e->data_img[i] = color % 256;
-	color /= 256;
-	e->data_img[i + 1] = color % 256;
-	color /= 256;
-	e->data_img[i + 2] = color % 256;
+	if ((d->move_lr + x) > 0) || ((d->move_lr + x) < X_WIN)
+		return (1);
+	return (0);
+}
+
+int		check_y(t_data *d)
+{
+	if ((d->move_ud + y) > 0) || ((d->move_ud + y) < Y_WIN)
+		return (1);
+	return (0);
 }

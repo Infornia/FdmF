@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:39:19 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/01 20:38:03 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/02 18:11:05 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,37 @@ void		get_map(t_data *d)
 		exit(0);
 	while (get_next_line(fd, &line) > 0)
 	{
-		map = split_int_this(map, line, y, d->projection_type);
+		map = split_int_this(map, line, y);
 		y++;
 	}
 	close(fd);
 	d->map = map;
+}
+
+t_map		*split_int_this(t_map *map, char *line, int y)
+{
+	char	**split;
+	t_point	*atoi;
+	int		tmp;
+	int		x;
+
+	x = 0;
+	split = ft_strsplit(line, ' ');
+	while ((split[x]) != NULL)
+		x++;
+	map->map_w = x > map->map_w ? x : map->map_w;
+	atoi = (t_point *)malloc(sizeof(t_point) * (map->map_w + 1)); //alloc data[i][x]
+	x = 0;
+	while (split[x])
+	{
+		if ((tmp = ft_atoi((const char *)split[x])) > map->z_max)
+			map->z_max = tmp;
+		atoi[x] = create_point(x++ ,y, tmp);
+	}
+	while (x < map->map_w)
+		atoi[x] = create_point(x++, y, 0);
+	map->data[y] = atoi;
+	return (map);
 }
 
 int			line_count(char *file_name)
@@ -54,40 +80,12 @@ int			line_count(char *file_name)
 	return (i);
 }
 
-t_point		create_point(int x, int y, int z, int proj)
+t_point		create_point(int x, int y, int z)
 {
 	t_point	p;
 
 	p.d3_x = x * 25;
 	p.d3_y = y * 25;
 	p.d3_z = z * 15;
-	calc_proj(&p, proj);
 	return (p);
-}
-
-t_map		*split_int_this(t_map *map, char *line, int y, int proj)
-{
-	char	**split;
-	t_point	*atoi;
-	int		tmp;
-	int		x;
-	int 	cur_x;
-
-	x = 0;
-	split = ft_strsplit(line, ' ');
-	while ((split[x]) != NULL)
-		x++;
-	map->map_w = x > map->map_w ? x : map->map_w;
-	cur_x = x;
-	atoi = (t_point *)malloc(sizeof(t_point) * (x + 1)); //alloc data[i][x]
-	x = 0;
-	while (x < cur_x)
-	{
-		if ((tmp = ft_atoi((const char *)split[x])) > map->z_max)
-			map->z_max = tmp;
-		atoi[x] = create_point(x ,y, tmp, proj);
-		x++;
-	}
-	map->data[y] = atoi;
-	return (map);
 }
