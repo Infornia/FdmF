@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:39:19 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/02 18:11:05 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/03 22:52:41 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void		get_map(t_data *d)
 	while (get_next_line(fd, &line) > 0)
 	{
 		map = split_int_this(map, line, y);
-		y++;
+		ft_strdel(&line);
+		++y;
 	}
 	close(fd);
 	d->map = map;
@@ -74,7 +75,7 @@ int			line_count(char *file_name)
 	line = ft_memalloc(sizeof(char **) * 2);
 	i = 0;
 	while ((get_next_line(fd, line) > 0))
-		i++;
+		++i;
 	free(line);
 	close(fd);
 	return (i);

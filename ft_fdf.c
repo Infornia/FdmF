@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/02 18:07:30 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/03 23:15:14 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,26 @@ void	ft_fdf_init(t_data *d, char *file)
 
 	i = 0;
 	d->file_name = file;
-	d->x_win = X_WIN;
-	d->y_win = Y_WIN;
-	d->projection_type = PARA;
+	d->projection_type = ISO;
 	d->draw_type = IMG;
+	d->color = WHITE;
+	d->color_mode = 0;
 	d->size_map = 25;
 	d->size_peaks = 15;
 	d->move_lr = 1;
 	d->move_ud = 1;
 	d->mlx = mlx_init();
-	d->win = mlx_new_window (d->mlx, d->x_win, d->y_win, "FdF");
-	d->img = mlx_new_image(d->mlx, d->x_win, d->y_win);
+	d->win = mlx_new_window (d->mlx, X_WIN, Y_WIN, "FdF");
+	d->img = mlx_new_image(d->mlx, X_WIN, Y_WIN);
 	d->data_img = mlx_get_data_addr(d->img, &(d->color), &(d->size), &(d->endian));
 	get_map(d);
 	if (d->win)
 	{
-		mlx_key_hook(d->win, key_hook, d);
+		mlx_hook(d->win, 3, 3, key_hook, d);
 		mlx_mouse_hook(d->win, mouse_hook, d);
 		mlx_expose_hook(d->win, expose_hook, d);
 		mlx_loop(d->mlx);
+		//mlx_key_hook(d->win, key_hook, d);
 	}
 }
 
@@ -47,7 +48,11 @@ void		ft_fdf_exit(t_data *d)
 
 int		expose_hook(t_data *d)
 {
-	draw_rainbow(d, d->x_win, d->y_win);
+	if (d->color_mode == 1)
+	{
+		draw_rainbow(d, d->size, d->mlx, d->win, d->draw_type);
+		d->color = BLACK;
+	}
 	print_map(d);
 	return(0);
 }
@@ -55,37 +60,35 @@ int		expose_hook(t_data *d)
 int		key_hook(int keycode, t_data *d)
 {
 	printf("Key %d\n", keycode);
-	if (d)
-	{
-		if (keycode == 65307)
-			ft_fdf_exit(d);
-		if (keycode == 65361)
-			move_left(d);
-		if (keycode == 65363)
-			move_right(d);
-		if (keycode == 65362)
-			move_up(d);
-		if (keycode == 65364)
-			move_down(d);
-		if (keycode == 49)
-		{
-			d->projection_type = PARA;
-			erase_img(d);
-		}
-		if (keycode == 50)
-		{
-			d->projection_type = ISO;
-			erase_img(d);
-		}
-	printf("LR %d\n UD %d\n Proj %d\n", d->move_lr, d->move_ud, d->projection_type);
-	}
+	if (keycode == 65361)
+		move_left(d);
+	else if (keycode == 65363)
+		move_right(d);
+	else if (keycode == 65362)
+		move_up(d);
+	else if (keycode == 65364)
+		move_down(d);
+	else if (keycode == 49)
+		d->color_mode = 1;
+	else if (keycode == 50)
+		d->color_mode = 2;
+	else if (keycode == 112)
+		d->projection_type = PARA;
+	else if (keycode == 105)
+		d->projection_type = ISO;
+	else if (keycode == 65307)
+		ft_fdf_exit(d);
+	else
+		return (0);
+	erase_img(d);
+	//printf("LR %d\n UD %d\n Proj %d\n", d->move_lr, d->move_ud, d->projection_type);
 	return (0);
 }
 
 int		mouse_hook(int	button, int x, int y, t_data *d)
 {
 	//printf("Mouse Button: %d\n", button);
-	if (button == 1 && x > (d->x_win - 25) && y < 25)
+	if (button == 1 && x > (X_WIN - 25) && y < 25)
 		ft_fdf_exit(d);
 	//printf("Mouse x: %d\n", x);
 	//printf("Mouse y: %d\n", y);

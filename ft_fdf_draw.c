@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/02 17:35:18 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/03 23:16:00 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,35 @@ void	print_map(t_data *d)
 				draw_line(d, d->map->data[j][i], d->map->data[j][i + 1]);
 			if (j < d->map->map_h - 1)
 				draw_line(d, d->map->data[j][i], d->map->data[j + 1][i]);
-			i++;
+			++i;
 		}
-		j++;
+		++j;
 	}
 	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
 }
 
-void	draw_rainbow(t_data *e, int x_win, int y_win)
+void	draw_rainbow(t_data *e, int size, void *mlx, void *win, int draw)
 {
 	static int	x;
 	static int	y;
 	double		d;
     
-	d = -x_win * 1.85;
+	d = -X_WIN * 1.85;
 	x = 0;
-	while (x < x_win)
+	while (x < X_WIN)
 	{
 		y = 0;
-		while (y < y_win)
+		while (y < Y_WIN)
 		{
-			e->color = get_color(d);
-			//mlx_pixel_put(e->mlx, e->win, x, y, e->color);
-			color_pixel(e, e->color, x, y);
-			y++;
-			d += 1/(x_win * y_win * 0.166);
+			if (draw == PUT)
+				mlx_pixel_put(mlx, win, x, y, get_color(d));
+			else
+				color_pixel(e, get_color(d), x, y, size);
+			++y;
+			d += 1/(X_WIN * Y_WIN * 0.166);
 		}
-	x++;
+	++x;
 	}
-	//mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 }
 
 int		get_color(double t)

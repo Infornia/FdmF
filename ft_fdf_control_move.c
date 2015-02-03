@@ -6,22 +6,32 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/01 16:25:27 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/02 17:16:59 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/03 20:17:48 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-// nom ft_fdf_check_points.c
-int		check_x(t_data *d)
+
+void	move_left(t_data *d)
 {
-	if ((d->move_lr + x) > 0) || ((d->move_lr + x) < X_WIN)
-		return (1);
-	return (0);
+	d->move_lr -= 50;
+	erase_img(d);
 }
 
-int		check_y(t_data *d)
+void	move_right(t_data *d)
 {
-	if ((d->move_ud + y) > 0) || ((d->move_ud + y) < Y_WIN)
-		return (1);
-	return (0);
+	d->move_lr += 50;
+	erase_img(d);
+}
+
+void	move_up(t_data *d)
+{
+	d->move_ud -= 50;
+	erase_img(d);
+}
+
+void	move_down(t_data *d)
+{
+	d->move_ud += 50;
+	erase_img(d);
 }
