@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/03 23:16:00 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/04 17:47:18 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,25 @@ int		get_color(double t)
 	127.5 * (sin(t) + 1),
 	127.5 * (1 - cos(t))
 	));
+}
+
+void	draw_white(t_data *e, int size, void *mlx, void *win, int draw)
+{
+	int	x;
+	int	y;
+    
+	x = 0;
+	while (x < X_WIN)
+	{
+		y = 0;
+		while (y < Y_WIN)
+		{
+			if (draw == PUT)
+				mlx_pixel_put(mlx, win, x, y, get_color(0xFFFFFF));
+			else
+				color_pixel(e, WHITE, x, y, size);
+			++y;
+		}
+	++x;
+	}
 }

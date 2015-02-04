@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/03 23:15:51 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/04 17:55:33 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct	s_point
 
 typedef struct s_map
 {
-	//int		**data;
 	t_point	**data;
 	int		z_max;
 	int		map_h;
@@ -85,8 +84,8 @@ typedef	struct	s_data
 	int			draw_type;
 	int		move_lr;
 	int		move_ud;
-	int		size_map;
-	int		size_peaks;
+	double		zoom;
+	double		size_peaks;
 	t_map	*map;
 }			t_data;
 
@@ -120,9 +119,11 @@ t_point 		create_point(int x, int y, int z);
 *******************DRAW
 */
 
+void	draw_white(t_data *e, int size, void *mlx, void *win, int draw);
 void	print_map(t_data *d);
 void		draw_line(t_data *d, t_point p1, t_point p2);
-void			calc_proj(t_point *p, int proj, int lr, int ud);
+void			calc_para(t_point *p, int lr, int ud, double zoom, double peaks);
+void			calc_iso(t_point *p, int lr, int ud, double zoom, double peaks);
 void			calc_control(t_point *p);
 void			change_proj(t_data *d);
 void			check_case(t_data *e, t_point p1, t_point p2);
@@ -132,8 +133,17 @@ void	draw_rainbow(t_data *e, int size, void *mlx, void *win, int draw);
 void		color_pixel(t_data *e, int color, int x, int y, int size);
 
 /*
-*******************CALCULATE
+*******************MOVE
 */
+
+void	move_left(t_data *d);
+void	move_right(t_data *d);
+void	move_up(t_data *d);
+void	move_down(t_data *d);
+void	less_zoom(t_data *d);
+void	more_zoom(t_data *d);
+void	less_peak(t_data *d);
+void	more_peak(t_data *d);
 
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/03 23:15:14 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/04 19:35:51 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ void	ft_fdf_init(t_data *d, char *file)
 	d->file_name = file;
 	d->projection_type = ISO;
 	d->draw_type = IMG;
-	d->color = WHITE;
+	d->color = BLACK;
 	d->color_mode = 0;
-	d->size_map = 25;
-	d->size_peaks = 15;
 	d->move_lr = 1;
 	d->move_ud = 1;
 	d->mlx = mlx_init();
@@ -31,13 +29,15 @@ void	ft_fdf_init(t_data *d, char *file)
 	d->img = mlx_new_image(d->mlx, X_WIN, Y_WIN);
 	d->data_img = mlx_get_data_addr(d->img, &(d->color), &(d->size), &(d->endian));
 	get_map(d);
+	d->zoom = 0.55;
+	d->size_peaks = d->map->z_max * 0.2;
 	if (d->win)
 	{
+		//mlx_key_hook(d->win, key_hook, d);
 		mlx_hook(d->win, 3, 3, key_hook, d);
 		mlx_mouse_hook(d->win, mouse_hook, d);
 		mlx_expose_hook(d->win, expose_hook, d);
 		mlx_loop(d->mlx);
-		//mlx_key_hook(d->win, key_hook, d);
 	}
 }
 
@@ -53,6 +53,9 @@ int		expose_hook(t_data *d)
 		draw_rainbow(d, d->size, d->mlx, d->win, d->draw_type);
 		d->color = BLACK;
 	}
+	else if (d->color_mode == 3)
+		draw_white(d, d->size, d->mlx, d->win, d->draw_type);
+	d->color = BLACK;
 	print_map(d);
 	return(0);
 }
@@ -68,10 +71,25 @@ int		key_hook(int keycode, t_data *d)
 		move_up(d);
 	else if (keycode == 65364)
 		move_down(d);
+	else if (keycode == 61)
+		more_zoom(d);
+	else if (keycode == 45)
+		less_zoom(d);
+	else if (keycode == 93)
+		more_peak(d);
+	else if (keycode == 91)
+		less_peak(d);
 	else if (keycode == 49)
 		d->color_mode = 1;
 	else if (keycode == 50)
 		d->color_mode = 2;
+	else if (keycode == 51)
+	{
+		if (d->color_mode != 3)
+			d->color_mode = 3;
+		else
+			d->color_mode = 4;
+	}
 	else if (keycode == 112)
 		d->projection_type = PARA;
 	else if (keycode == 105)
@@ -81,7 +99,6 @@ int		key_hook(int keycode, t_data *d)
 	else
 		return (0);
 	erase_img(d);
-	//printf("LR %d\n UD %d\n Proj %d\n", d->move_lr, d->move_ud, d->projection_type);
 	return (0);
 }
 

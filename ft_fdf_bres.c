@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 18:23:49 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/03 23:15:46 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/04 17:47:16 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,16 @@ void	draw_line(t_data *d, t_point p1, t_point p2)
 	int		dx;
 	int		dy;
 
-	calc_proj(&p1, d->projection_type, d->move_lr, d->move_ud);
-	calc_proj(&p2, d->projection_type, d->move_lr, d->move_ud);
+	if (d->projection_type == PARA)
+	{
+	calc_para(&p1, d->move_lr, d->move_ud, d->zoom, d->size_peaks);
+	calc_para(&p2, d->move_lr, d->move_ud, d->zoom, d->size_peaks);
+	}
+	if (d->projection_type == ISO)
+	{
+	calc_iso(&p1, d->move_lr, d->move_ud, d->zoom, d->size_peaks);
+	calc_iso(&p2, d->move_lr, d->move_ud, d->zoom, d->size_peaks);
+	}
 	dx *= (dx = p2.x - p1.x) < 0 ? -1 : 1;
 	dy *= (dy = p2.y - p1.y) < 0 ? -1 : 1;
 	if (dx >= dy)
