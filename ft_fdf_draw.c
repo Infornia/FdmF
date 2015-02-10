@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/04 17:47:18 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/10 18:02:19 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,26 @@ void	print_map(t_data *d)
 {
 	int	i;
 	int	j;
-// A traiter: map_w avec longueur de chaque ligne etudiee
 	j = 0;
+	if (d->projection_type == PARA)
+		calc_para(d, &(d->map->data[0][0]));
+	if (d->projection_type == ISO)
+		calc_iso(d, &(d->map->data[0][0]));
 	while (j < d->map->map_h)
 	{
 		i = 0;
 		while (i < d->map->map_w)
 		{
 			if (i < d->map->map_w - 1)
-				draw_line(d, d->map->data[j][i], d->map->data[j][i + 1]);
+				draw_line(d, d->map->data[j][i], &(d->map->data[j][i + 1]));
 			if (j < d->map->map_h - 1)
-				draw_line(d, d->map->data[j][i], d->map->data[j + 1][i]);
+				draw_line(d, d->map->data[j][i], &(d->map->data[j + 1][i]));
 			++i;
 		}
 		++j;
 	}
 	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
+	mlx_destroy_image(d->mlx, d->img);
 }
 
 void	draw_rainbow(t_data *e, int size, void *mlx, void *win, int draw)

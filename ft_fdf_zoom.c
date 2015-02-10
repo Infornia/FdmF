@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 17:07:41 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/04 17:50:31 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/10 18:55:01 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 void	more_zoom(t_data *d)
 {
-	d->zoom += 0.1;
+	d->zoom += d->map->map_w * 0.001;
 	erase_img(d);
 }
 
 void	less_zoom(t_data *d)
 {
-	d->zoom -= 0.1;
+	d->zoom -= d->map->map_w * 0.001;
 	erase_img(d);
 }
 
 void	more_peak(t_data *d)
 {
-	d->size_peaks += 1;
+	d->peaks += d->map->z_max * 0.01;
 	erase_img(d);
 }
 
 void	less_peak(t_data *d)
 {
-	d->size_peaks -= 1;
+	d->peaks -= d->map->z_max * 0.01;
 	erase_img(d);
 }

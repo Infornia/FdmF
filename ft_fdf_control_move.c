@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/01 16:25:27 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/03 20:17:48 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/10 18:48:49 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 void	move_left(t_data *d)
 {
-	d->move_lr -= 50;
+	d->lr -= 50;
 	erase_img(d);
 }
 
 void	move_right(t_data *d)
 {
-	d->move_lr += 50;
+	d->lr += 50;
 	erase_img(d);
 }
 
 void	move_up(t_data *d)
 {
-	d->move_ud -= 50;
+	d->ud -= 50;
 	erase_img(d);
 }
 
 void	move_down(t_data *d)
 {
-	d->move_ud += 50;
+	d->ud += 50;
 	erase_img(d);
 }

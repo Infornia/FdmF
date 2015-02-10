@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/04 17:55:33 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/10 18:49:00 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,17 @@ typedef	struct	s_data
 	void	*win;
 	void	*img;
 	char		*data_img;
+	int			bpp;
 	int			size;
 	int			endian;
-	int			color;
+	int		color;
 	int			color_mode;
 	int			projection_type;
 	int			draw_type;
-	int		move_lr;
-	int		move_ud;
+	int		lr;
+	int		ud;
 	double		zoom;
-	double		size_peaks;
+	double		peaks;
 	t_map	*map;
 }			t_data;
 
@@ -121,9 +122,9 @@ t_point 		create_point(int x, int y, int z);
 
 void	draw_white(t_data *e, int size, void *mlx, void *win, int draw);
 void	print_map(t_data *d);
-void		draw_line(t_data *d, t_point p1, t_point p2);
-void			calc_para(t_point *p, int lr, int ud, double zoom, double peaks);
-void			calc_iso(t_point *p, int lr, int ud, double zoom, double peaks);
+void		draw_line(t_data *d, t_point p1, t_point *p2);
+void			calc_para(t_data *d, t_point *p);
+void			calc_iso(t_data *d, t_point *p);
 void			calc_control(t_point *p);
 void			change_proj(t_data *d);
 void			check_case(t_data *e, t_point p1, t_point p2);
