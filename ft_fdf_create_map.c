@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:39:19 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/03 22:52:41 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/15 19:06:02 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void		get_map(t_data *d)
 	char	*line;
 
 	y = 0;
+	line = NULL;
 	map = (t_map *)ft_memalloc(sizeof(t_map));
 	map->map_h = line_count(d->file_name);
 	map->z_max = 0;
-	map->data = (t_point **)ft_memalloc(sizeof(t_point *) * map->map_h + 1); //alloc data[i]
-	map->data[map->map_h + 1] = NULL;
+	map->data = (t_point **)ft_memalloc(sizeof(t_point *) * map->map_h); //alloc data[i]
 	if (!(fd = open(d->file_name, O_RDONLY)))
 		exit(0);
 	while (get_next_line(fd, &line) > 0)
@@ -34,6 +34,7 @@ void		get_map(t_data *d)
 		ft_strdel(&line);
 		++y;
 	}
+	free(line);
 	close(fd);
 	d->map = map;
 }
@@ -56,11 +57,13 @@ t_map		*split_int_this(t_map *map, char *line, int y)
 	{
 		if ((tmp = ft_atoi((const char *)split[x])) > map->z_max)
 			map->z_max = tmp;
+		free(split[x]);
 		atoi[x] = create_point(x++ ,y, tmp);
 	}
 	while (x < map->map_w)
 		atoi[x] = create_point(x++, y, 0);
 	map->data[y] = atoi;
+	free(split);
 	return (map);
 }
 
@@ -68,14 +71,17 @@ int			line_count(char *file_name)
 {
 	int		i;
 	int		fd;
-	char	**line;
+	char	*line;
 
 	if (!(fd = open(file_name, O_RDONLY)))
 		exit(0);
-	line = ft_memalloc(sizeof(char **) * 2);
 	i = 0;
-	while ((get_next_line(fd, line) > 0))
+	line = NULL;
+	while ((get_next_line(fd, &line) > 0))
+	{
+		ft_strdel(&line);
 		++i;
+	}
 	free(line);
 	close(fd);
 	return (i);
@@ -85,8 +91,8 @@ t_point		create_point(int x, int y, int z)
 {
 	t_point	p;
 
-	p.d3_x = x * 25;
-	p.d3_y = y * 25;
-	p.d3_z = z * 15;
+	p.d3_x = x;
+	p.d3_y = y;
+	p.d3_z = z;
 	return (p);
 }

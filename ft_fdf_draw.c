@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/10 18:02:19 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/15 22:50:55 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	print_map(t_data *d)
 	int	i;
 	int	j;
 	j = 0;
-	if (d->projection_type == PARA)
-		calc_para(d, &(d->map->data[0][0]));
-	if (d->projection_type == ISO)
-		calc_iso(d, &(d->map->data[0][0]));
+	calc(d, &(d->map->data[0][0]));
 	while (j < d->map->map_h)
 	{
 		i = 0;
@@ -91,3 +88,23 @@ void	draw_white(t_data *e, int size, void *mlx, void *win, int draw)
 	++x;
 	}
 }
+
+/*void	draw_board(t_data *d)
+{
+	int	x;
+	int	y;
+    
+	x = 0;
+	while (x < X_WIN)
+	{
+		y = 0;
+		if (x < X_WIN * 3/)
+		while (y < 200)
+		{
+			color_pixel(d, GRAY, x, y, size);
+			++y;
+		}
+	++x;
+	}
+}
+*/

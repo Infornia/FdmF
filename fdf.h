@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/10 18:49:00 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/15 21:28:51 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@
 */
 # define RED	0xFF0000
 # define BLUE 	0x0000FF
+# define QUOISE	0x74BDF9
 # define GREEN 	0x00FF00
-# define WHITE 	0xFFFFFF
-# define BLACK 	0x000000
 # define PINK 	0xFF00FF
+# define WHITE 	0xFFFFFF
+# define GRAY 	0x0F0F0F
+# define BLACK 	0x000000
 # define RGB(r, g, b)(256 * 256 * (int)(r) + 256 * (int)(g) + (int)(b))
 
 
@@ -111,6 +113,7 @@ void	erase_img(t_data *d);
 *******************PARSING
 */
 
+void	draw_board(t_data *d);
 void	get_map(t_data *d);
 int			line_count(char *file_name);
 t_map		*split_int_this(t_map *map, char *line, int y);
@@ -123,8 +126,7 @@ t_point 		create_point(int x, int y, int z);
 void	draw_white(t_data *e, int size, void *mlx, void *win, int draw);
 void	print_map(t_data *d);
 void		draw_line(t_data *d, t_point p1, t_point *p2);
-void			calc_para(t_data *d, t_point *p);
-void			calc_iso(t_data *d, t_point *p);
+void			calc(t_data *d, t_point *p);
 void			calc_control(t_point *p);
 void			change_proj(t_data *d);
 void			check_case(t_data *e, t_point p1, t_point p2);
@@ -132,6 +134,8 @@ void				draw_case1(t_data *e, t_point p1, t_point p2);
 void				draw_case2(t_data *e, t_point p1, t_point p2);
 void	draw_rainbow(t_data *e, int size, void *mlx, void *win, int draw);
 void		color_pixel(t_data *e, int color, int x, int y, int size);
+void		color_pixel2(t_data *e, int color, int x, int y, int size);
+int			color_select(t_data *d, t_point p1, t_point p2, int z);
 
 /*
 *******************MOVE

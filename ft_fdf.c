@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/10 18:50:01 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/02/15 22:53:13 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,16 @@ void	ft_fdf_init(t_data *d, char *file)
 	d->file_name = file;
 	d->projection_type = ISO;
 	d->draw_type = IMG;
-	d->color = WHITE;
 	d->color_mode = 0;
-	d->lr = 0;
-	d->ud = 0;
+	d->lr = X_WIN * 2/5;
+	d->ud = 200 + Y_WIN / 1000;
 	d->mlx = mlx_init();
 	d->win = mlx_new_window (d->mlx, X_WIN, Y_WIN, "FdF");
 	d->img = mlx_new_image(d->mlx, X_WIN, Y_WIN);
 	d->data_img = mlx_get_data_addr(d->img, &(d->bpp), &(d->size), &(d->endian));
 	get_map(d);
-	d->zoom = 0.55;
-	d->peaks = d->map->z_max * 0.01;
+	d->zoom = 1 + (X_WIN / d->map->map_w / 8) + (Y_WIN / d->map->map_h / 5);
+	d->peaks = d->map->z_max / Y_WIN;
 	if (d->win)
 	{
 		//mlx_key_hook(d->win, key_hook, d);
@@ -43,22 +42,16 @@ void	ft_fdf_init(t_data *d, char *file)
 
 void		ft_fdf_exit(t_data *d)
 {
+
 	exit(0);
 }
 
 int		expose_hook(t_data *d)
 {
-	d->color = WHITE;
 	if (d->color_mode == 1)
-	{
 		draw_rainbow(d, d->size, d->mlx, d->win, d->draw_type);
-		d->color = BLACK;
-	}
 	else if (d->color_mode == 3)
-	{
 		draw_white(d, d->size, d->mlx, d->win, d->draw_type);
-		d->color = BLACK;
-	}
 	print_map(d);
 	return(0);
 }
@@ -91,8 +84,10 @@ int		key_hook(int keycode, t_data *d)
 		if (d->color_mode != 3)
 			d->color_mode = 3;
 		else
-			d->color_mode = 4;
+			d->color_mode = 10;
 	}
+	else if (keycode == 52)
+		d->color_mode = 4;
 	else if (keycode == 112)
 		d->projection_type = PARA;
 	else if (keycode == 105)
