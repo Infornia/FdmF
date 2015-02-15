@@ -91,8 +91,14 @@ t_point		create_point(int x, int y, int z)
 {
 	t_point	p;
 
+<<<<<<< HEAD
 	p.d3_x = x;
 	p.d3_y = y;
 	p.d3_z = z;
+=======
+	p.d3_x = (x - X_WIN / 2) * 25;
+	p.d3_y = (y - X_WIN / 2) * 25;
+	p.d3_z = (z - Y_WIN / 2) * 15;
+>>>>>>> 68d992bf7cbb874dd96fa5829fa09c8d2dc8ec1c
 	return (p);
 }
