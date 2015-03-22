@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 14:27:02 by mwilk             #+#    #+#             */
-/*   Updated: 2015/01/06 15:42:03 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/20 16:49:49 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,23 @@
 # define MIN(x, y)	(x < y) ? x : y
 # define MAX(x, y)	(x > y) ? x : y
 # define BUFF_SIZE 16
+
+/*
+** TREE
+*/
+
+typedef struct		s_tree
+{
+	void	*content;
+	size_t	content_size;
+	struct	s_tree	*right;
+	struct	s_tree	*left;
+}					t_tree;
+
+t_tree	*ft_tree_add(t_tree *root, t_tree *node, int (*cmp)(void *, void *));
+void	ft_tree_del(t_tree **parent, void (*del)(void *, size_t));
+int		ft_tree_h(t_tree *node);
+t_tree	*ft_tree_new(const void *content, size_t content_size);
 
 /*
 ** LISTS
