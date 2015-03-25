@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 22:59:05 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/25 23:21:28 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void			init_events(t_data *d);
 int				expose_hook(t_data *d);
 int				mouse_hook(int button, int x, int y, t_data *d);
 int				key_hook(int keycode, t_data *d);
+int				color_hook(int keycode, t_data *d);
 void			ft_fdf_exit(t_data *d);
 void			erase_img(t_data *d);
 
