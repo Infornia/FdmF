@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 22:59:53 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/25 23:12:56 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,12 @@ void	draw_luminotherapy(t_data *e, int size)
 	float		d;
 	int			color;	
 
-	d = e->rainbow * 0.5;
+	d = e->rainbow * 0.075;
 	x = 0;
+	color = get_color(d);
 	while (x < X_WIN)
 	{
 		y = 0;
-		d += 0.0001;
-		color = get_color(d);
 		while (y < Y_WIN)
 		{
 			color_pixel(e, color, x, y, size);
