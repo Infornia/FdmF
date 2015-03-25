@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 22:59:10 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/25 22:59:53 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ void	draw_rainbow(t_data *e, int size)
 	float		d;
 	int			color;	
 
-	(void)mlx;
-	(void)win;
-	(void)draw;
 	d = e->rainbow * 0.5;
 	x = 0;
 	while (x < X_WIN)
