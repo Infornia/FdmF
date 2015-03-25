@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 23:00:37 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/25 23:01:52 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		expose_hook(t_data *d)
 		draw_rainbow(d, d->size);
 	else if (d->color_mode == 3)
 		draw_white(d, d->size);
-	else if (d->color_mode == 3)
+	else if (d->color_mode == 5)
 		draw_luminotherapy(d, d->size);
 	print_map(d);
 	return (0);
