@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 18:23:49 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/15 20:48:00 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/25 19:07:00 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	draw_case1(t_data *d, t_point p1, t_point p2)
 		while (x <= p2.x)
 		{
 			mlx_pixel_put(d->mlx, d->win, x, p1.y + ((p2.y - p1.y) *
-					(x - p1.x)) / (p2.x - p1.x), color_selec(d, p1, p2, x));
+					(x - p1.x)) / (p2.x - p1.x), color_selec(d, p1, p2));
 			++x;
 		}
 	}
@@ -54,7 +54,7 @@ void	draw_case1(t_data *d, t_point p1, t_point p2)
 	{
 		while (x <= p2.x)
 		{
-			color_pixel(d, color_selec(d, p1, p2, x), x, p1.y + ((p2.y - p1.y) *
+			color_pixel(d, color_selec(d, p1, p2), x, p1.y + ((p2.y - p1.y) *
 					(x - p1.x)) / (p2.x - p1.x), d->size);
 			++x;
 		}
@@ -63,7 +63,6 @@ void	draw_case1(t_data *d, t_point p1, t_point p2)
 
 void	draw_case2(t_data *d, t_point p1, t_point p2)
 {
-	int		x;
 	int		y;
 
 	y = p1.y;
@@ -72,7 +71,7 @@ void	draw_case2(t_data *d, t_point p1, t_point p2)
 		while (y <= p2.y)
 		{
 			mlx_pixel_put(d->mlx, d->win, p1.x + ((p2.x - p1.x) *
-					(y - p1.y)) / (p2.y - p1.y), y, color_selec(d, p1, p2, x));
+					(y - p1.y)) / (p2.y - p1.y), y, color_selec(d, p1, p2));
 			++y;
 		}
 	}
@@ -80,7 +79,7 @@ void	draw_case2(t_data *d, t_point p1, t_point p2)
 	{
 		while (y <= p2.y)
 		{
-			color_pixel(d, color_selec(d, p1, p2, x), p1.x + ((p2.x - p1.x) *
+			color_pixel(d, color_selec(d, p1, p2), p1.x + ((p2.x - p1.x) *
 					(y - p1.y)) / (p2.y - p1.y), y, d->size);
 			++y;
 		}

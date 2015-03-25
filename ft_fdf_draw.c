@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/15 22:50:55 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/25 22:57:02 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,41 +31,70 @@ void	print_map(t_data *d)
 		}
 		++j;
 	}
+	mlx_do_sync(d->mlx);
 	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
 	mlx_destroy_image(d->mlx, d->img);
 }
 
-void	draw_rainbow(t_data *e, int size, void *mlx, void *win, int draw)
+int		get_color(float t)
 {
-	static int	x;
-	static int	y;
-	double		d;
-    
-	d = -X_WIN * 1.85;
+	return (RGB(
+	127.5 * (cos(t) + 1),
+	127.5 * (sin(t) + 1),
+	127.5 * (1 - cos(t))
+		));
+}
+
+void	draw_rainbow(t_data *e, int size)
+{
+	int			x;
+	int			y;
+	float		d;
+	int			color;	
+
+	(void)mlx;
+	(void)win;
+	(void)draw;
+	d = e->rainbow * 0.5;
 	x = 0;
 	while (x < X_WIN)
 	{
 		y = 0;
+		d += 0.0025;
+		color = get_color(d);
 		while (y < Y_WIN)
 		{
-			if (draw == PUT)
-				mlx_pixel_put(mlx, win, x, y, get_color(d));
-			else
-				color_pixel(e, get_color(d), x, y, size);
+			color_pixel(e, color, x, y, size);
 			++y;
-			d += 1/(X_WIN * Y_WIN * 0.166);
 		}
 	++x;
 	}
 }
 
-int		get_color(double t)
+void	draw_luminotherapy(t_data *e, int size)
 {
-	return(RGB(
-	127.5 * (cos(t) + 1),
-	127.5 * (sin(t) + 1),
-	127.5 * (1 - cos(t))
-	));
+	int			x;
+	int			y;
+	float		d;
+	int			color;	
+
+	(void)mlx;
+	(void)win;
+	(void)draw;
+	d = e->rainbow * 0.5;
+	x = 0;
+	while (x < X_WIN)
+	{
+		y = 0;
+		d += 0.0001;
+		color = get_color(d);
+		while (y < Y_WIN)
+		{
+			color_pixel(e, color, x, y, size);
+			++y;
+		}
+	++x;
+	}
 }
 
 void	draw_white(t_data *e, int size, void *mlx, void *win, int draw)

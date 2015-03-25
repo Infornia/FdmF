@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:39:19 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/15 19:06:02 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/25 19:10:54 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void		get_map(t_data *d)
 	t_map	*map;
 	int		fd;
 	int		y;
-	char	**grid;
 	char	*line;
 
 	y = 0;
@@ -25,7 +24,7 @@ void		get_map(t_data *d)
 	map = (t_map *)ft_memalloc(sizeof(t_map));
 	map->map_h = line_count(d->file_name);
 	map->z_max = 0;
-	map->data = (t_point **)ft_memalloc(sizeof(t_point *) * map->map_h); //alloc data[i]
+	map->data = (t_point **)ft_memalloc(sizeof(t_point *) * map->map_h);
 	if (!(fd = open(d->file_name, O_RDONLY)))
 		exit(0);
 	while (get_next_line(fd, &line) > 0)
@@ -51,17 +50,17 @@ t_map		*split_int_this(t_map *map, char *line, int y)
 	while ((split[x]) != NULL)
 		x++;
 	map->map_w = x > map->map_w ? x : map->map_w;
-	atoi = (t_point *)malloc(sizeof(t_point) * (map->map_w + 1)); //alloc data[i][x]
+	atoi = (t_point *)malloc(sizeof(t_point) * (map->map_w + 1));
 	x = 0;
 	while (split[x])
 	{
 		if ((tmp = ft_atoi((const char *)split[x])) > map->z_max)
 			map->z_max = tmp;
 		free(split[x]);
-		atoi[x] = create_point(x++ ,y, tmp);
+		atoi[x] = create_point(&x ,y, tmp);
 	}
 	while (x < map->map_w)
-		atoi[x] = create_point(x++, y, 0);
+		atoi[x] = create_point(&x, y, 0);
 	map->data[y] = atoi;
 	free(split);
 	return (map);
@@ -87,18 +86,13 @@ int			line_count(char *file_name)
 	return (i);
 }
 
-t_point		create_point(int x, int y, int z)
+t_point		create_point(int *x, int y, int z)
 {
 	t_point	p;
 
-<<<<<<< HEAD
-	p.d3_x = x;
+	p.d3_x = *x;
 	p.d3_y = y;
 	p.d3_z = z;
-=======
-	p.d3_x = (x - X_WIN / 2) * 25;
-	p.d3_y = (y - X_WIN / 2) * 25;
-	p.d3_z = (z - Y_WIN / 2) * 15;
->>>>>>> 68d992bf7cbb874dd96fa5829fa09c8d2dc8ec1c
+	(*x) += 1;
 	return (p);
 }
