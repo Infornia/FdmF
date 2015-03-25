@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 22:56:57 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/25 22:59:05 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ t_point			create_point(int *x, int y, int z);
 *******************DRAW
 */
 
-void			draw_white(t_data *e, int size, void *mlx, void *win, int draw);
 void			print_map(t_data *d);
 void			draw_line(t_data *d, t_point p1, t_point *p2);
 void			calc(t_data *d, t_point *p);
@@ -157,6 +156,7 @@ void			check_case(t_data *e, t_point p1, t_point p2);
 void			draw_case1(t_data *e, t_point p1, t_point p2);
 void			draw_case2(t_data *e, t_point p1, t_point p2);
 void			draw_rainbow(t_data *e, int size);
+void			draw_white(t_data *e, int size);
 void			draw_luminotherapy(t_data *e, int size);
 void			color_pixel(t_data *e, int color, int x, int y, int size);
 void			color_pixel2(t_data *e, int color, int x, int y, int size);

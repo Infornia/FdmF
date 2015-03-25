@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:49:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 22:57:02 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/25 22:59:10 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,6 @@ void	draw_luminotherapy(t_data *e, int size)
 	float		d;
 	int			color;	
 
-	(void)mlx;
-	(void)win;
-	(void)draw;
 	d = e->rainbow * 0.5;
 	x = 0;
 	while (x < X_WIN)
@@ -97,7 +94,7 @@ void	draw_luminotherapy(t_data *e, int size)
 	}
 }
 
-void	draw_white(t_data *e, int size, void *mlx, void *win, int draw)
+void	draw_white(t_data *e, int size)
 {
 	int	x;
 	int	y;
@@ -108,10 +105,7 @@ void	draw_white(t_data *e, int size, void *mlx, void *win, int draw)
 		y = 0;
 		while (y < Y_WIN)
 		{
-			if (draw == PUT)
-				mlx_pixel_put(mlx, win, x, y, get_color(0xFFFFFF));
-			else
-				color_pixel(e, WHITE, x, y, size);
+			color_pixel(e, WHITE, x, y, size);
 			++y;
 		}
 	++x;
