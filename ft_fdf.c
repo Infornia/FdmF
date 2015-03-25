@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 23:12:40 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/25 23:23:53 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,35 +64,12 @@ int		key_hook(int keycode, t_data *d)
 	int	i;
 
 	i = 0;
-	printf("Key %d\n", keycode);
-	if (keycode == 18)
-	{
-		d->rainbow++;
-		if (d->rainbow > X_WIN)
-			d->rainbow = 0;
-		d->color_mode = 1;
-	}
-	if (keycode == 19)
-	{
-		d->rainbow++;
-		if (d->rainbow > X_WIN)
-			d->rainbow = 0;
-		d->color_mode = 5;
-	}
-	else if (keycode == 23)
-		d->color_mode = 2;
-	else if (keycode == 20)
-	{
-		if (d->color_mode != 3)
-			d->color_mode = 3;
-		else
-			d->color_mode = 10;
-	}
-	else if (keycode == 21)
-		d->color_mode = 4;
-	else if (keycode == 112)
+	//printf("Key %d\n", keycode);
+	if (keycode >= 18 && keycode <= 23)
+		color_hook(keycode, d);
+	else if (keycode == 35)
 		d->projection_type = PARA;
-	else if (keycode == 105)
+	else if (keycode == 34)
 		d->projection_type = ISO;
 	while (i < TKEY)
 	{

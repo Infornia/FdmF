@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:48:12 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 22:48:30 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/25 23:24:22 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,34 @@ int		color_selec(t_data *d, t_point p1, t_point p2)
 			return (BLACK);
 	}
 	return (WHITE);
+}
+
+void	color_hook(int keycode, t_data *d)
+{
+	if (keycode == 18)
+	{
+		d->rainbow++;
+		if (d->rainbow > X_WIN)
+			d->rainbow = 0;
+		d->color_mode = 1;
+	}
+	if (keycode == 19)
+	{
+		d->rainbow++;
+		if (d->rainbow > X_WIN)
+			d->rainbow = 0;
+		d->color_mode = 5;
+	}
+	else if (keycode == 23)
+		d->color_mode = 2;
+	else if (keycode == 20)
+	{
+		if (d->color_mode != 3)
+			d->color_mode = 3;
+		else
+			d->color_mode = 10;
+	}
+	else if (keycode == 21)
+		d->color_mode = 4;
+	
 }
