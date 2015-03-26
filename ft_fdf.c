@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/26 15:35:44 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/26 18:40:20 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_fdf_init(t_data *d, char *file)
 	d->peaks = d->map->z_max / Y_WIN;
 	if (d->win)
 	{
-		mlx_hook(d->win, 2, 3, key_hook, d);
+		mlx_hook(d->win, 2, 4, key_hook, d);
 		mlx_mouse_hook(d->win, mouse_hook, d);
 		mlx_expose_hook(d->win, expose_hook, d);
 		mlx_loop(d->mlx);
@@ -56,7 +56,6 @@ int		expose_hook(t_data *d)
 	else if (d->color_mode == 5)
 		draw_luminotherapy(d, d->size);
 	print_map(d);
-	printf("Bonjour l'expose");
 	return (0);
 }
 
@@ -72,6 +71,10 @@ int		key_hook(int keycode, t_data *d)
 		d->projection_type = PARA;
 	else if (keycode == 34)
 		d->projection_type = ISO;
+	else if (keycode == 12)
+		d->rot = 1;
+	else if (keycode == 13)
+		d->rot = 0;
 	while (i < TKEY)
 	{
 		if (d->key_event[i].key_code == keycode)

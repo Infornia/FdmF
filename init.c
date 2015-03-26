@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/25 20:43:17 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/26 14:10:00 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/26 18:40:49 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,4 @@ void			init_events(t_data *d)
 	d->key_event[7] = set_event(PEAK_UP, &more_peak);
 	d->key_event[8] = set_event(PEAK_DOWN, &less_peak);
 	d->key_event[9] = set_event(RESET, &reset);
-	d->key_event[10] = set_event(ROT, &rotation);
 }
