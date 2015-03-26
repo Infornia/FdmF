@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 23:23:53 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/26 15:35:44 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_fdf_init(t_data *d, char *file)
 		(d->img, &(d->bpp), &(d->size), &(d->endian));
 	get_map(d);
 	init_events(d);
-	d->zoom = 1 + (X_WIN / d->map->map_w / 8) + (Y_WIN / d->map->map_h / 5);
+	d->zoom = 1 + (X_WIN / d->map->map_w / 8) + (Y_WIN / d->map->map_h / 6);
 	d->peaks = d->map->z_max / Y_WIN;
 	if (d->win)
 	{
@@ -56,6 +56,7 @@ int		expose_hook(t_data *d)
 	else if (d->color_mode == 5)
 		draw_luminotherapy(d, d->size);
 	print_map(d);
+	printf("Bonjour l'expose");
 	return (0);
 }
 

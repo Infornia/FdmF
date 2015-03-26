@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 23:24:47 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/26 15:40:46 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 **Parameters
 */
 
-# define X_WIN 2622
+# define X_WIN 1222
 # define Y_WIN X_WIN/2
 # define PARA	0
 # define ISO	1
@@ -60,7 +60,9 @@
 # define ZOOM_OUT	27
 # define PEAK_UP	30
 # define PEAK_DOWN	33
-# define TKEY	9
+# define RESET		29
+# define ROT		12
+# define TKEY	11
 
 /*
 **Structures
@@ -175,6 +177,8 @@ void			less_zoom(t_data *d);
 void			more_zoom(t_data *d);
 void			less_peak(t_data *d);
 void			more_peak(t_data *d);
+void			rotation2(t_point *p);
+void			rotation(t_data *d);
 
 /*
 *******************INUTILISE

@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 17:07:41 by mwilk             #+#    #+#             */
-/*   Updated: 2015/02/15 18:28:19 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/03/26 13:01:49 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	more_zoom(t_data *d)
 
 void	less_zoom(t_data *d)
 {
-	d->zoom -= 1;
+	if (d->zoom > 1)
+		d->zoom -= 1;
 	erase_img(d);
 }
 
