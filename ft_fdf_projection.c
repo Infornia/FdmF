@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/30 16:39:44 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/26 18:38:58 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/04/21 18:27:22 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	calc(t_data *d, t_point *p)
 void	erase_img(t_data *d)
 {
 	d->img = mlx_new_image(d->mlx, X_WIN, Y_WIN);
-	d->data_img = mlx_get_data_addr(d->img, &(d->color), &(d->size), &(d->endian));
+	d->data_img = mlx_get_data_addr
+		(d->img, &(d->color), &(d->size), &(d->endian));
 	expose_hook(d);
 }

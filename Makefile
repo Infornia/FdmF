@@ -6,7 +6,7 @@
 #    By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/09 16:17:56 by mwilk             #+#    #+#              #
-#    Updated: 2015/03/25 20:49:52 by mwilk            ###   ########.fr        #
+#    Updated: 2015/04/21 19:39:02 by mwilk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRC = ft_fdf_color_set.c\
 	  main.c\
 	  ft_fdf_draw.c\
 	  ft_fdf_create_map.c\
-	  init.c
+	  init.c\
+	  usage.c\
 
 OBJS = $(addprefix $(OJB_PATH),$(OBJ))
 SRCS = $(addprefix $(SRC_PATH),$(SRC))
@@ -43,6 +44,10 @@ MLX_H = -I minilibx/
 MLX_L = -L minilibx/ -lmlx -framework OpenGl -framework Appkit
 
 all: makelib normal
+
+norm:
+	@echo "\033[32mnorminette...\033[0m"
+	@norminette $(SRCS)
 
 makelib:
 		@make -C Libft

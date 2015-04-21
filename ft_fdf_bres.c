@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 18:23:49 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 19:07:00 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/04/21 18:20:24 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	draw_case1(t_data *d, t_point p1, t_point p2)
 		while (x <= p2.x)
 		{
 			color_pixel(d, color_selec(d, p1, p2), x, p1.y + ((p2.y - p1.y) *
-					(x - p1.x)) / (p2.x - p1.x), d->size);
+					(x - p1.x)) / (p2.x - p1.x));
 			++x;
 		}
 	}
@@ -80,7 +80,7 @@ void	draw_case2(t_data *d, t_point p1, t_point p2)
 		while (y <= p2.y)
 		{
 			color_pixel(d, color_selec(d, p1, p2), p1.x + ((p2.x - p1.x) *
-					(y - p1.y)) / (p2.y - p1.y), y, d->size);
+					(y - p1.y)) / (p2.y - p1.y), y);
 			++y;
 		}
 	}

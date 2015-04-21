@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/26 18:39:55 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/04/21 20:15:03 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,8 @@ int				color_set(int key_code, t_data *e);
 /*
 *******************INIT
 */
-void			ft_fdf_init(t_data *d, char *file);		
+void			fdf_print_usage(void);
+void			ft_fdf_init(t_data *d, char *file);
 void			init_events(t_data *d);
 int				expose_hook(t_data *d);
 int				mouse_hook(int button, int x, int y, t_data *d);
@@ -157,10 +158,10 @@ void			change_proj(t_data *d);
 void			check_case(t_data *e, t_point p1, t_point p2);
 void			draw_case1(t_data *e, t_point p1, t_point p2);
 void			draw_case2(t_data *e, t_point p1, t_point p2);
-void			draw_rainbow(t_data *e, int size);
-void			draw_white(t_data *e, int size);
-void			draw_luminotherapy(t_data *e, int size);
-void			color_pixel(t_data *e, int color, int x, int y, int size);
+void			draw_rainbow(t_data *e);
+void			draw_white(t_data *e);
+void			draw_luminotherapy(t_data *e);
+void			color_pixel(t_data *e, int color, int x, int y);
 void			color_pixel2(t_data *e, int color, int x, int y, int size);
 int				color_selec(t_data *d, t_point p1, t_point p2);
 

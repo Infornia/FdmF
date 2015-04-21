@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/26 18:40:20 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/04/21 18:27:47 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	ft_fdf_exit(t_data *d)
 int		expose_hook(t_data *d)
 {
 	if (d->color_mode == 1)
-		draw_rainbow(d, d->size);
+		draw_rainbow(d);
 	else if (d->color_mode == 3)
-		draw_white(d, d->size);
+		draw_white(d);
 	else if (d->color_mode == 5)
-		draw_luminotherapy(d, d->size);
+		draw_luminotherapy(d);
 	print_map(d);
 	return (0);
 }
@@ -64,17 +64,12 @@ int		key_hook(int keycode, t_data *d)
 	int	i;
 
 	i = 0;
-	//printf("Key %d\n", keycode);
 	if (keycode >= 18 && keycode <= 23)
 		color_hook(keycode, d);
 	else if (keycode == 35)
 		d->projection_type = PARA;
 	else if (keycode == 34)
 		d->projection_type = ISO;
-	else if (keycode == 12)
-		d->rot = 1;
-	else if (keycode == 13)
-		d->rot = 0;
 	while (i < TKEY)
 	{
 		if (d->key_event[i].key_code == keycode)

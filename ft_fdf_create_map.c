@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:39:19 by mwilk             #+#    #+#             */
-/*   Updated: 2015/03/25 19:10:54 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/04/21 18:32:21 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_map		*split_int_this(t_map *map, char *line, int y)
 		if ((tmp = ft_atoi((const char *)split[x])) > map->z_max)
 			map->z_max = tmp;
 		free(split[x]);
-		atoi[x] = create_point(&x ,y, tmp);
+		atoi[x] = create_point(&x, y, tmp);
 	}
 	while (x < map->map_w)
 		atoi[x] = create_point(&x, y, 0);
