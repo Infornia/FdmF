@@ -6,7 +6,7 @@
 #    By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/09 16:17:56 by mwilk             #+#    #+#              #
-#    Updated: 2015/04/21 19:39:02 by mwilk            ###   ########.fr        #
+#    Updated: 2015/04/22 15:49:11 by mwilk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ SRC = ft_fdf_color_set.c\
 	  main.c\
 	  ft_fdf_draw.c\
 	  ft_fdf_create_map.c\
-	  init.c\
-	  usage.c\
+	  fdf_init.c\
+	  fdF_usage.c\
 
 OBJS = $(addprefix $(OJB_PATH),$(OBJ))
 SRCS = $(addprefix $(SRC_PATH),$(SRC))

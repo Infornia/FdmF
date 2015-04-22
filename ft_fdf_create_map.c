@@ -6,11 +6,34 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:39:19 by mwilk             #+#    #+#             */
-/*   Updated: 2015/04/21 18:32:21 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/04/22 16:42:33 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static t_map	*calc_map_w(t_data *d, t_map *map)
+{
+	int		x;
+	int		fd;
+	char	*line;
+	char	**split;
+		
+	x = 0;
+	if (!(fd = open(d->file_name, O_RDONLY)))
+		exit(0);
+	while (get_next_line(fd, &line) > 0)
+	{
+		split = ft_strsplit(line, ' ');
+		while ((split[x]) != NULL)
+			x++;
+		map->map_w = x > map->map_w ? x : map->map_w;
+		ft_strdel(&line);
+	}
+	free(line);
+	close(fd);
+	return (map);
+}
 
 void		get_map(t_data *d)
 {
@@ -25,6 +48,7 @@ void		get_map(t_data *d)
 	map->map_h = line_count(d->file_name);
 	map->z_max = 0;
 	map->data = (t_point **)ft_memalloc(sizeof(t_point *) * map->map_h);
+	map = calc_map_w(d, map);
 	if (!(fd = open(d->file_name, O_RDONLY)))
 		exit(0);
 	while (get_next_line(fd, &line) > 0)
@@ -45,11 +69,7 @@ t_map		*split_int_this(t_map *map, char *line, int y)
 	int		tmp;
 	int		x;
 
-	x = 0;
 	split = ft_strsplit(line, ' ');
-	while ((split[x]) != NULL)
-		x++;
-	map->map_w = x > map->map_w ? x : map->map_w;
 	atoi = (t_point *)malloc(sizeof(t_point) * (map->map_w + 1));
 	x = 0;
 	while (split[x])
