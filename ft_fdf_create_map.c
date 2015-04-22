@@ -6,22 +6,19 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:39:19 by mwilk             #+#    #+#             */
-/*   Updated: 2015/04/22 17:43:38 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/04/22 18:00:39 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_map	*calc_map_w(t_data *d, t_map *map)
+static t_map	*calc_map_w(t_map *map, int fd)
 {
 	int		x;
-	int		fd;
 	char	*line;
 	char	**split;
 		
 	x = 0;
-	if (!(fd = open(d->file_name, O_RDONLY)))
-		exit(0);
 	while (get_next_line(fd, &line) > 0)
 	{
 		split = ft_strsplit(line, ' ');
@@ -44,11 +41,13 @@ void		get_map(t_data *d)
 
 	y = 0;
 	line = NULL;
+	if (!(fd = open(d->file_name, O_RDONLY)))
+		exit(0);
 	map = (t_map *)ft_memalloc(sizeof(t_map));
 	map->map_h = line_count(d->file_name);
 	map->z_max = 0;
 	map->data = (t_point **)ft_memalloc(sizeof(t_point *) * map->map_h);
-	map = calc_map_w(d, map);
+	map = calc_map_w(map, fd);
 	if (!(fd = open(d->file_name, O_RDONLY)))
 		exit(0);
 	while (get_next_line(fd, &line) > 0)
