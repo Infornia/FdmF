@@ -6,7 +6,7 @@
 /*   By: mwilk <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/21 19:35:22 by mwilk             #+#    #+#             */
-/*   Updated: 2015/04/22 17:17:43 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/05/31 16:21:56 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void			fdf_print_usage(void)
 {
 	ft_putstr("\033[35m\n\t *****Welcome to Fdf*****\n\n\033[0m");
-	ft_putstr("\033[32m\tusage: ./fdf [YourMap.txt]\n\n\033[0m");
+	ft_putstr("\033[32m\tusage: ./fdf [YourMap]\n\n\033[0m");
 	ft_putstr("\033[33m\t---------Commands---------\n");
 	ft_putstr("\tProjections:");
 	ft_putstr("\t\n\t\tPara =\t\tP\n\t\tIso =\t\tI\n\n");

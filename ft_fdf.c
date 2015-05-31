@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 16:55:47 by mwilk             #+#    #+#             */
-/*   Updated: 2015/04/22 18:00:06 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/05/31 15:36:38 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	ft_fdf_init(t_data *d, char *file)
 {
-	int		i;
-
-	i = 0;
 	d->file_name = file;
 	d->projection_type = ISO;
 	d->draw_type = IMG;
@@ -30,7 +27,8 @@ void	ft_fdf_init(t_data *d, char *file)
 		(d->img, &(d->bpp), &(d->size), &(d->endian));
 	get_map(d);
 	init_events(d);
-	d->zoom = 1 + (X_WIN / d->map->map_w / 8) + (Y_WIN / d->map->map_h / 6);
+	d->zoom =
+		(X_WIN / (d->map->map_w + 1) / 8) + (Y_WIN / (d->map->map_h + 1) / 6);
 	d->peaks = d->map->z_max / Y_WIN;
 	if (d->win)
 	{

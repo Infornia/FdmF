@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:48:12 by mwilk             #+#    #+#             */
-/*   Updated: 2015/04/22 18:13:15 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/05/31 15:24:48 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 int		main(int ac, char **av)
 {
 	t_data	d;
-	int		fd;
-	int		ret;
 	char	*bull;
 
 	bull = NULL;

@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/04/21 20:15:03 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/05/31 15:52:49 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ struct			s_data
 	int			lr;
 	int			ud;
 	int			rainbow;
-	double		zoom;
-	double		peaks;
+	float		zoom;
+	float		peaks;
 	t_key		key_event[TKEY];
 	t_map		*map;
 };

@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:39:19 by mwilk             #+#    #+#             */
-/*   Updated: 2015/04/22 18:00:39 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/05/31 16:27:12 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_map	*calc_map_w(t_map *map, int fd)
 	int		x;
 	char	*line;
 	char	**split;
-		
+
 	x = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -32,7 +32,7 @@ static t_map	*calc_map_w(t_map *map, int fd)
 	return (map);
 }
 
-void		get_map(t_data *d)
+void			get_map(t_data *d)
 {
 	t_map	*map;
 	int		fd;
@@ -61,7 +61,7 @@ void		get_map(t_data *d)
 	d->map = map;
 }
 
-t_map		*split_int_this(t_map *map, char *line, int y)
+t_map			*split_int_this(t_map *map, char *line, int y)
 {
 	char	**split;
 	t_point	*atoi;
@@ -85,7 +85,7 @@ t_map		*split_int_this(t_map *map, char *line, int y)
 	return (map);
 }
 
-int			line_count(char *file_name)
+int				line_count(char *file_name)
 {
 	int		i;
 	int		fd;
@@ -102,10 +102,15 @@ int			line_count(char *file_name)
 	}
 	free(line);
 	close(fd);
+	if (!i)
+	{
+		ft_putendl("Your file seems empty bro :/ ");
+		exit(0);
+	}
 	return (i);
 }
 
-t_point		create_point(int *x, int y, int z)
+t_point			create_point(int *x, int y, int z)
 {
 	t_point	p;
 
