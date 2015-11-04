@@ -6,7 +6,7 @@
 #    By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/09 16:17:56 by mwilk             #+#    #+#              #
-#    Updated: 2015/05/01 19:51:27 by mwilk            ###   ########.fr        #
+#    Updated: 2015/11/04 17:52:33 by mwilk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ norm:
 	@norminette $(SRCS)
 
 makelib:
-		@make -C Libft
+	@make -C Libft
 
 makerelib:
 		@make -C libft re
@@ -64,8 +64,6 @@ fcleanlib:
 normal: $(NAME)
 
 $(NAME):
-	@make -C libft/ fclean
-	@make -C libft/
 	@make -C minilibx/ clean
 	@make -C minilibx/
 	@gcc -g $(CFLAGS) $(LIB_H) $(FDF_H) $(MLX_H) -c $(SRCS) 

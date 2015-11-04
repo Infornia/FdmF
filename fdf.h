@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:42:54 by mwilk             #+#    #+#             */
-/*   Updated: 2015/05/31 15:52:49 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/11/04 17:53:45 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
-# include "libft/includes/libft.h"
+# include "Libft/includes/libft.h"
 
 /*
 **Parameters
