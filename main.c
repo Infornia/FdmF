@@ -6,7 +6,7 @@
 /*   By: mwilk <mwilk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:48:12 by mwilk             #+#    #+#             */
-/*   Updated: 2015/05/31 15:24:48 by mwilk            ###   ########.fr       */
+/*   Updated: 2015/12/11 21:24:05 by mwilk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,10 @@
 int		main(int ac, char **av)
 {
 	t_data	d;
-	char	*bull;
 
-	bull = NULL;
 	if (ac == 1)
-	{
 		fdf_print_usage();
-	}
 	if (ac == 2)
-	{
 		ft_fdf_init(&d, av[1]);
-	}
 	return (0);
 }
